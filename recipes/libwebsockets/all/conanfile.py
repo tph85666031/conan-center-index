@@ -232,6 +232,9 @@ class LibwebsocketsConan(ConanFile):
         elif self.options.with_ssl == "wolfssl":
             self.requires("wolfssl/5.6.3")
 
+        if self.settings.os == "Linux":
+            self.requires("libcap/2.75")
+
     def validate(self):
         if self.options.shared and self.settings.compiler == "gcc" and Version(self.settings.compiler.version) < "5":
             # https://github.com/conan-io/conan-center-index/pull/5321#issuecomment-826367276
